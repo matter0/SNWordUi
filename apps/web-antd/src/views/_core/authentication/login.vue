@@ -17,7 +17,6 @@ import { captchaImage } from '#/api/core/captcha';
 import { useAuthStore } from '#/store';
 
 import { useLoginTenantId } from '../oauth-common';
-import OAuthLogin from './oauth-login.vue';
 
 defineOptions({ name: 'Login' });
 
@@ -101,7 +100,7 @@ const formSchema = computed((): VbenFormSchema[] => {
       component: 'VbenInput',
       componentProps: {
         class: 'focus:border-primary',
-        placeholder: $t('authentication.usernameTip'),
+        placeholder: '请输入邮箱',
       },
       defaultValue: 'admin',
       fieldName: 'username',
@@ -168,13 +167,15 @@ async function handleAccountLogin(values: LoginAndRegisterParams) {
     ref="loginFormRef"
     :form-schema="formSchema"
     :loading="authStore.loginLoading"
-    :show-register="false"
-    :show-third-party-login="true"
+    :show-register="true"
+    :show-third-party-login="false"
+    :show-code-login="false"
+    :show-qrcode-login="false"
     @submit="handleAccountLogin"
   >
-    <!-- 可通过show-third-party-login控制是否显示第三方登录 -->
-    <template #third-party-login>
-      <OAuthLogin />
-    </template>
+    <!--    &lt;!&ndash; 可通过show-third-party-login控制是否显示第三方登录 &ndash;&gt;-->
+    <!--    <template #third-party-login>-->
+    <!--      <OAuthLogin />-->
+    <!--    </template>-->
   </AuthenticationLogin>
 </template>
