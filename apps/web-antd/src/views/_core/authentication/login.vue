@@ -71,31 +71,31 @@ const { loginTenantId } = useLoginTenantId();
 
 const formSchema = computed((): VbenFormSchema[] => {
   return [
-    {
-      component: 'VbenSelect',
-      componentProps: {
-        class: 'bg-background h-[40px] focus:border-primary',
-        contentClass: 'max-h-[256px] overflow-y-auto',
-        options: tenantInfo.value.voList?.map((item) => ({
-          label: item.companyName,
-          value: item.tenantId,
-        })),
-        placeholder: $t('authentication.selectAccount'),
-      },
-      defaultValue: DEFAULT_TENANT_ID,
-      dependencies: {
-        if: () => tenantInfo.value.tenantEnabled,
-        // 可以把这里当做watch
-        trigger: (model) => {
-          // 给oauth登录使用
-          loginTenantId.value = model?.tenantId ?? DEFAULT_TENANT_ID;
-        },
-        triggerFields: ['', 'tenantId'],
-      },
-      fieldName: 'tenantId',
-      label: $t('authentication.selectAccount'),
-      rules: z.string().min(1, { message: $t('authentication.selectAccount') }),
-    },
+    // {
+    //   component: 'VbenSelect',
+    //   componentProps: {
+    //     class: 'bg-background h-[40px] focus:border-primary',
+    //     contentClass: 'max-h-[256px] overflow-y-auto',
+    //     options: tenantInfo.value.voList?.map((item) => ({
+    //       label: item.companyName,
+    //       value: item.tenantId,
+    //     })),
+    //     placeholder: $t('authentication.selectAccount'),s
+    //   },
+    //   defaultValue: DEFAULT_TENANT_ID,
+    //   dependencies: {
+    //     if: () => tenantInfo.value.tenantEnabled,
+    //     // 可以把这里当做watch
+    //     trigger: (model) => {
+    //       // 给oauth登录使用
+    //       loginTenantId.value = model?.tenantId ?? DEFAULT_TENANT_ID;
+    //     },
+    //     triggerFields: ['', 'tenantId'],
+    //   },
+    //   fieldName: 'tenantId',
+    //   label: $t('authentication.selectAccount'),
+    //   rules: z.string().min(1, { message: $t('authentication.selectAccount') }),
+    // },
     {
       component: 'VbenInput',
       componentProps: {
